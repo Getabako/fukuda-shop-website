@@ -30,7 +30,7 @@
         .header {
             background: linear-gradient(135deg, #5d9c04 0%, #6aaf08 100%);
             color: white;
-            padding: 1rem 0;
+            padding: 0;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
@@ -44,6 +44,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 80px;
         }
 
         .logo {
@@ -51,23 +52,189 @@
             font-weight: 700;
             text-decoration: none;
             color: white;
+            transition: transform 0.3s ease;
         }
 
-        .contact-cta {
-            background: rgba(255,255,255,0.2);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem 1.2rem;
             color: white;
+            text-decoration: none;
             font-weight: 500;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border-radius: 0;
+            position: relative;
+            white-space: nowrap;
         }
 
-        .contact-cta:hover {
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: #ff6b35;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .nav-link i {
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
             background: white;
-            color: #5d9c04;
-            border-color: white;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(93, 156, 4, 0.1);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-item:hover .nav-link i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-item:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #5d9c04, #6aaf08);
+            color: white;
+            padding-left: 1.5rem;
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #5d9c04 0%, #6aaf08 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                transform: translateY(-100vh);
+                transition: transform 0.3s ease;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+
+            .nav-link {
+                padding: 1rem 2rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: rgba(255,255,255,0.1);
+                margin: 0.5rem 1rem;
+                border-radius: 8px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-item:hover .dropdown,
+            .nav-item.active .dropdown {
+                max-height: 300px;
+            }
+
+            .dropdown-item {
+                color: white;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding: 0.7rem 1.5rem;
+            }
+
+            .dropdown-item:hover {
+                background: rgba(255,255,255,0.1);
+                color: white;
+                padding-left: 2rem;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
         }
 
         /* Hero Section */
@@ -398,6 +565,10 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 1rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -421,8 +592,38 @@
             }
 
             .header-container {
-                flex-direction: column;
+                justify-content: space-between;
                 gap: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .values-section {
+                padding: 2rem 1rem;
             }
         }
 
@@ -469,10 +670,50 @@
     <header class="header">
         <div class="header-container">
             <a href="#" class="logo">福田商店</a>
-            <a href="#contact" class="contact-cta">
-                <i class="fas fa-phone"></i>
-                お問い合わせ
-            </a>
+            
+            <nav class="navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#navigation" class="nav-link">
+                            サービス案内
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown">
+                            <a href="https://whiteswan.kyusyoku.net/" class="dropdown-item" target="_blank">
+                                <i class="fas fa-store"></i> オンラインストア
+                            </a>
+                            <a href="#navigation" class="dropdown-item">
+                                <i class="fas fa-tshirt"></i> 製品情報
+                            </a>
+                            <a href="http://kyusyoku.net/ft/" class="dropdown-item" target="_blank">
+                                <i class="fas fa-chalkboard-teacher"></i> 先生方へ
+                            </a>
+                            <a href="https://kyusyoku.net/%e7%89%b9%e5%88%a5%e6%94%af%e6%8f%b4%e5%ad%a6%e6%a0%a1%e3%81%ae%e6%96%b9%e3%81%b8/" class="dropdown-item" target="_blank">
+                                <i class="fas fa-heart"></i> 特別支援
+                            </a>
+                            <a href="http://kyusyoku.net/dl/" class="dropdown-item" target="_blank">
+                                <i class="fas fa-book"></i> カタログ
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://kyusyoku.net/inq/" class="nav-link" target="_blank">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#values" class="nav-link">福田商店のこだわり</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#video" class="nav-link">品質のお約束</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
         </div>
     </header>
 
@@ -667,6 +908,42 @@
 
     <!-- JavaScript for smooth scrolling and animations -->
     <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Mobile dropdown toggle
+        document.querySelectorAll('.nav-item').forEach(item => {
+            const link = item.querySelector('.nav-link');
+            const dropdown = item.querySelector('.dropdown');
+            
+            if (dropdown) {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        item.classList.toggle('active');
+                    }
+                });
+            }
+        });
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -698,6 +975,16 @@
         // Observe all sections for animation
         document.querySelectorAll('.section, .nav-card, .values-section').forEach(el => {
             observer.observe(el);
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navigation')) {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
         });
     </script>
 </body>
