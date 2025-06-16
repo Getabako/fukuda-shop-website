@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>福田商店 - ひたすら品質</title>
+    <meta name="description" content="給食着・エプロン・白衣の専門店 福田商店。高品質な給食用衣料品を通販でお届けします。">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #5d9c04 0%, #6aaf08 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .contact-cta {
+            background: rgba(255,255,255,0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .contact-cta:hover {
+            background: white;
+            color: #5d9c04;
+            border-color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(93, 156, 4, 0.8), rgba(106, 175, 8, 0.8)), url('https://kyusyoku.net/wp-content/uploads/2019/01/top.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(93, 156, 4, 0.1), rgba(106, 175, 8, 0.1));
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: white;
+            color: #5d9c04;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e55a2e;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Cards */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .nav-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border: 1px solid rgba(93, 156, 4, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #5d9c04, #6aaf08);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .nav-card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #5d9c04, #6aaf08);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #333;
+        }
+
+        .nav-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Special highlight for online store */
+        .nav-card.store-highlight {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: white;
+        }
+
+        .nav-card.store-highlight h3,
+        .nav-card.store-highlight p {
+            color: white;
+        }
+
+        .nav-card.store-highlight .nav-card-icon {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Company Values Section */
+        .values-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+        }
+
+        .values-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .values-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .values-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .values-text h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .values-text .subtitle {
+            font-size: 1.1rem;
+            color: #5d9c04;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .values-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .values-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .values-list .icon {
+            color: #5d9c04;
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 60px rgba(0,0,0,0.15);
+        }
+
+        .video-placeholder {
+            background: #333;
+            color: white;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .video-placeholder i {
+            font-size: 3rem;
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #5d9c04;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #5d9c04;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+            text-align: center;
+            color: #888;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .values-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Floating Contact Button */
+        .floating-contact {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .floating-contact:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">福田商店</a>
+            <a href="#contact" class="contact-cta">
+                <i class="fas fa-phone"></i>
+                お問い合わせ
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content animate-fade-in">
+            <h1>ひたすら品質</h1>
+            <p class="hero-subtitle">給食着・エプロン・白衣の専門店<br>All For Smile ～全ては子供達の笑顔のために～</p>
+            <div class="cta-buttons">
+                <a href="https://whiteswan.kyusyoku.net/" class="btn btn-primary" target="_blank">
+                    <i class="fas fa-shopping-cart"></i>
+                    今すぐ購入する
+                </a>
+                <a href="#products" class="btn">
+                    <i class="fas fa-info-circle"></i>
+                    製品について
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Navigation -->
+    <section class="section" id="navigation">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">サービス案内</h2>
+                <p class="section-subtitle">給食用衣料品のプロフェッショナルとして、最高品質の製品とサービスをお届けします</p>
+            </div>
+
+            <div class="nav-grid">
+                <a href="https://whiteswan.kyusyoku.net/" class="nav-card store-highlight" target="_blank">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>オンラインストア</h3>
+                    <p>給食用エプロン・給食着専門の通販サイト「ホワイトスワン」で今すぐご購入いただけます</p>
+                </a>
+
+                <a href="/products" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>製品情報</h3>
+                    <p>給食着・エプロン・白衣など、福田商店の高品質な製品ラインナップをご紹介</p>
+                </a>
+
+                <a href="http://kyusyoku.net/ft/" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>先生方へ</h3>
+                    <p>教育現場でご使用いただく先生方・教育委員会の方に知っていただきたい情報</p>
+                </a>
+
+                <a href="https://kyusyoku.net/%e7%89%b9%e5%88%a5%e6%94%af%e6%8f%b4%e5%ad%a6%e6%a0%a1%e3%81%ae%e6%96%b9%e3%81%b8/" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>特別支援</h3>
+                    <p>子どもたちに本当に着やすい白衣を。特別支援学校向けの専用商品をご提供</p>
+                </a>
+
+                <a href="http://kyusyoku.net/dl/" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>カタログ</h3>
+                    <p>製品カタログの請求やデジタルカタログのダウンロードはこちらから</p>
+                </a>
+
+                <a href="http://kyusyoku.net/inq/" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>FAQ・お問い合わせ</h3>
+                    <p>よくある質問への回答とお問い合わせフォームをご用意しています</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Values -->
+    <section class="section" id="values">
+        <div class="container">
+            <div class="values-section animate-fade-in">
+                <div class="values-content">
+                    <div class="values-image">
+                        <img src="http://kyusyoku.net/wp-content/uploads/2019/01/guide.jpg" alt="福田商店の品質へのこだわり">
+                    </div>
+                    <div class="values-text">
+                        <h2>福田商店のこだわり</h2>
+                        <p class="subtitle">All For Smile ～全ては子供達の笑顔のために～</p>
+                        <ul class="values-list">
+                            <li>
+                                <i class="fas fa-award icon"></i>
+                                <div>
+                                    <strong>最高品質の素材</strong><br>
+                                    厳選された素材のみを使用し、安全性と耐久性を両立
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-heart icon"></i>
+                                <div>
+                                    <strong>子どもファースト</strong><br>
+                                    着心地と動きやすさを追求した設計
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-leaf icon"></i>
+                                <div>
+                                    <strong>環境への配慮</strong><br>
+                                    持続可能な製造プロセスと環境に優しい素材を採用
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="https://whiteswan.kyusyoku.net/" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-shopping-cart"></i>
+                            今すぐ購入する
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section" id="video">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">品質のお約束</h2>
+                <p class="section-subtitle">福田商店が長年培ってきた技術と品質へのこだわりをご紹介</p>
+            </div>
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <i class="fas fa-play-circle"></i>
+                    <h3>品質紹介動画</h3>
+                    <p>製造プロセスと品質管理について詳しくご紹介</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="https://kyusyoku.net/wp-content/uploads/2019/03/531c6eaa3ac6f1f3fb76dacb8f7bf1e8-300x143.jpg" alt="福田商店ロゴ" style="max-width: 150px; margin-bottom: 1rem;">
+                    <p style="color: #bbb; margin-bottom: 1rem;">給食着・エプロン・白衣の専門店として、品質第一でお客様にお応えします。</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>企業情報</h3>
+                    <ul>
+                        <li><a href="https://kyusyoku.net/">ホーム</a></li>
+                        <li><a href="https://kyusyoku.net/about/">会社概要</a></li>
+                        <li><a href="https://kyusyoku.net/products/">製品情報</a></li>
+                        <li><a href="https://kyusyoku.net/eco/">エコ情報</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="https://kyusyoku.net/ft/forteacher1/">先生方へ</a></li>
+                        <li><a href="https://kyusyoku.net/ft/forteacher2/">教育委員会の方へ</a></li>
+                        <li><a href="https://kyusyoku.net/ft/kaikata/">商品購入方法</a></li>
+                        <li><a href="https://kyusyoku.net/dl/">カタログダウンロード</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>サポート</h3>
+                    <ul>
+                        <li><a href="https://kyusyoku.net/inq/">FAQ</a></li>
+                        <li><a href="https://kyusyoku.net/inq1/">お問い合わせ</a></li>
+                        <li><a href="https://kyusyoku.net/privacy-policy/">プライバシーポリシー</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 福田商店. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Contact Button -->
+    <a href="https://whiteswan.kyusyoku.net/" class="floating-contact" target="_blank" title="今すぐ購入">
+        <i class="fas fa-shopping-cart"></i>
+    </a>
+
+    <!-- JavaScript for smooth scrolling and animations -->
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('.section, .nav-card, .values-section').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
